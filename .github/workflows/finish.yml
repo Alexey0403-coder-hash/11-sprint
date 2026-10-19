@@ -10,10 +10,10 @@ jobs:
 
       - name: Setup Go
         uses: actions/setup-go@v4
-          with:
+        with:
             go-version: '1.26'
       - name: Test
-        run: parcel_test.go
+        run: go test ./...
 
       - name: Vet
         run: go vet
@@ -31,7 +31,7 @@ jobs:
 
       - name: Login to Docker
         uses: docker/login-action@v3
-          with:
+        with:
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
@@ -39,7 +39,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: /12-sprint
+          images: alexcoder0403/12-sprint
 
       - name: Build and push image
         uses: docker/build-push-action@v5
